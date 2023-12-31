@@ -1,28 +1,46 @@
-{% extends "base.html" %}
-{% block title %}Publicadores{% endblock title %}
+{% extends 'base.html' %}
+{% block title %}
+  Publicadores
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>LS Caruaru</h1>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Data de Batismo</th>
-                <th scope="col">Botões</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for publicador in publicadores %}
-                <tr>
-                  <th scope="row">{{ publicador.id }}</th>
-                  <td>{{ publicador.name }}</td>
-                  <td>{{ publicador.baptism }}</td>
-                  <td>- -</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-          </table>
-    </div>
-{% endblock content %}
+  <div class="container">
+    <h1>LS Caruaru</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Data de Batismo</th>
+          <th scope="col">Botões</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for publicador in publicadores %}
+          <tr>
+            <th scope="row">{{ publicador.id }}</th>
+            <td>{{ publicador.name }}</td>
+            <td>{{ publicador.baptism }}</td>
+            <td>- -</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="h4 mt-5">Adicionar Publicador</div>
+    <form class="mt-3" action="{% url 'adicionar' %}" method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" />
+      </div>
+      <div class="mb-3">
+        <label for="batismo" class="form-label">Data de batismo</label>
+        <input type="date" class="form-control" id="batismo" name="batismo" />
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success">Adicionar Publicador</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
