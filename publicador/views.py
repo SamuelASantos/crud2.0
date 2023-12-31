@@ -12,3 +12,16 @@ def adicionar(request):
     Publicador.objects.create(name=nome, baptism=batismo)
     publicadores = Publicador.objects.all()
     return render(request, 'index.html', {'publicadores':publicadores})
+
+def editar(request, id):
+    publicador = Publicador.objects.get(id=id)
+    return render(request, 'update.html', {'publicador':publicador})
+
+def update(request, id):
+    publicador = Publicador.objects.get(id=id)
+    new_name = request.POST.get('nome')
+    new_baptism = request.POST.get('batismo')
+    publicador.name = new_name
+    publicador.baptism = new_baptism
+    publicador.save()
+    return redirect(home)

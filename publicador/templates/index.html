@@ -21,7 +21,9 @@
             <th scope="row">{{ publicador.id }}</th>
             <td>{{ publicador.name }}</td>
             <td>{{ publicador.baptism }}</td>
-            <td>- -</td>
+            <td>
+                <a href="{% url 'editar' publicador.id %}" class="btn btn-warning">Editar</a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
@@ -32,11 +34,11 @@
       {% csrf_token %}
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="nome" name="nome" />
+        <input type="text" class="form-control" id="nome" name="nome" required/>
       </div>
       <div class="mb-3">
         <label for="batismo" class="form-label">Data de batismo</label>
-        <input type="date" class="form-control" id="batismo" name="batismo" />
+        <input type="date" class="form-control" id="batismo" name="batismo" required/>
       </div>
       <div class="d-grid gap-2">
         <button type="submit" class="btn btn-success">Adicionar Publicador</button>

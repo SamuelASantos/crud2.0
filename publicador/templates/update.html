@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+  Atualizar
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="h4 mt-5">Atualizar Publicador</div>
+    <form class="mt-3" action="{% url 'update' publicador.id %}" method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ publicador.name }}" required />
+      </div>
+      <div class="mb-3">
+        <label for="batismo" class="form-label">Data de batismo</label>
+        <input type="date" class="form-control" id="batismo" name="batismo" value="{{ publicador.baptism }}" required />
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success">Atualizar Publicador</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
