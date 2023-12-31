@@ -25,3 +25,8 @@ def update(request, id):
     publicador.baptism = new_baptism
     publicador.save()
     return redirect(home)
+
+def deletar(request, id):
+    publicador = Publicador.objects.get(id=id)
+    publicador.delete()
+    return redirect(home)
